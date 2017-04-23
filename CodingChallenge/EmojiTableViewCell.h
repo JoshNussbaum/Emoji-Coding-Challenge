@@ -10,4 +10,6 @@
 
 @interface EmojiTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UIImageView *emojiImageView;
+
 @end

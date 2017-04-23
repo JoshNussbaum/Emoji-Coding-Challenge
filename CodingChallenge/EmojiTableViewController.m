@@ -7,92 +7,166 @@
 //
 
 #import "EmojiTableViewController.h"
+#import "EmojiTableViewCell.h"
+#import "EmojiViewController.h"
 
-@interface EmojiTableViewController ()
+@interface EmojiTableViewController (){
+    NSDictionary *emojiDictionary;
+    NSMutableDictionary *emojiImageDataDictionary;
+    NSArray *emojiKeys;
+    NSInteger selectedRow;
+    NSInteger scrollingRowIndex;
+}
 
 @end
 
 @implementation EmojiTableViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    scrollingRowIndex = 0;
+    emojiDictionary = [[NSDictionary alloc]init];
+    emojiImageDataDictionary = [[NSMutableDictionary alloc]init];
+    emojiKeys = [[NSArray alloc]init];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self getEmojiData];
+
+//    for (int i = 0; i < emojiKeys.count; i++){
+//        NSString *key = emojiKeys[i];
+//        NSString *urlString = emojiDictionary[key];
+//        
+//        NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:urlString]];
+//        
+//        [emojiImageDataDictionary setObject:imageData forKey:key];
+//        
+//    }
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)getEmojiData{
+    NSURL *url = [NSURL URLWithString:@"https://api.github.com/emojis"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    [request setURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSError *error;
+    NSURLResponse *response;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSError *err = nil;
+    NSDictionary *jsonData = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              options:NSJSONReadingMutableContainers
+                              error:&err];
+    
+    NSLog(@"Here is the data -> %@", jsonData);
+    emojiDictionary = jsonData;
+    emojiKeys = [emojiDictionary allKeys];
 }
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return emojiDictionary.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSLog(@"We are rendering this index -> %ld", (long)indexPath.row);
+    EmojiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmojiTableViewCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSString *key = emojiKeys[indexPath.row];
+    
+    // check to see if we have the imageData in emojiImageDataDictionary, and if we do then use that instead of making a web call
+    NSData *imageData = [emojiImageDataDictionary objectForKey:key];
+    if (imageData == nil){
+        NSString *urlString = emojiDictionary[key];
+        
+        imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:urlString]];
+        
+        [emojiImageDataDictionary setObject:imageData forKey:key];
+
+    }
+    
+    cell.emojiImageView.image = [UIImage imageWithData: imageData];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    selectedRow = indexPath.row;
+    [self performSegueWithIdentifier:@"show_emoji_segue" sender:self];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        // after done displaying the last cell, load the next 20
+        [self loadEmojisWithStart:indexPath.row end:indexPath.row + 20];
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+-(void) loadEmojisWithStart:(NSInteger)start end:(NSInteger)end{
+    if (end > emojiKeys.count) end = emojiKeys.count;
+    NSLog(@"Loading from start: %ld to end: %ld", (long)start, (long)end);
+    for (int i = 0; i < end; i++){
+        NSString *key = emojiKeys[i];
+        
+        NSData *imageData = [emojiImageDataDictionary objectForKey:key];
+        if (imageData == nil){
+            NSString *urlString = emojiDictionary[key];
+            
+            imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:urlString]];
+            
+            [emojiImageDataDictionary setObject:imageData forKey:key];
+        }
+    }
 }
-*/
+//
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    NSArray *visibleTableViewCells = self.tableView.indexPathsForVisibleRows;
+//    NSLog(@"Here are the visible cells -> %@", visibleTableViewCells);
+//
+//    NSIndexPath *lastIndexPath = [visibleTableViewCells objectAtIndex:(visibleTableViewCells.count-1)];
+//    NSInteger lastIndex = lastIndexPath.row;
+//    NSLog(@"Here is the scrolling row index -> %ld, and the last visible index -> %ld", (long)scrollingRowIndex, (long)lastIndex);
+//    if (scrollingRowIndex == 0){
+//        scrollingRowIndex = lastIndex + 40;
+//    }
+//    
+//    if (lastIndex + 20 >= scrollingRowIndex){
+//        [self loadEmojisWithStart:lastIndex end:scrollingRowIndex];
+//        scrollingRowIndex += 20;
+//    }
+//}
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"show_emoji_segue"]) {
+        NSString *labelString = emojiKeys[selectedRow];
+        NSData *imageData = emojiImageDataDictionary[labelString];
+        EmojiViewController *vc = [segue destinationViewController];
+        [vc setEmojiWithLabelString:labelString imageData:imageData];
+    }
+    
 }
-*/
 
 @end

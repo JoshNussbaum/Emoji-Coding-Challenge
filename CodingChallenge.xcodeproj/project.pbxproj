@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		D34A23A41DD92F480055401F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A23A31DD92F480055401F /* main.m */; };
 		D34A23A71DD92F480055401F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A23A61DD92F480055401F /* AppDelegate.m */; };
-		D34A23AA1DD92F480055401F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A23A91DD92F480055401F /* ViewController.m */; };
 		D34A23AD1DD92F480055401F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34A23AB1DD92F480055401F /* Main.storyboard */; };
 		D34A23AF1DD92F480055401F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34A23AE1DD92F480055401F /* Assets.xcassets */; };
 		D34A23B21DD92F480055401F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34A23B01DD92F480055401F /* LaunchScreen.storyboard */; };
+		D34A23BE1DD934770055401F /* EmojiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A23BD1DD934770055401F /* EmojiTableViewController.m */; };
+		D34A23C11DD93FF10055401F /* EmojiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A23C01DD93FF10055401F /* EmojiTableViewCell.m */; };
+		D34A23C41DD9698B0055401F /* EmojiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A23C31DD9698B0055401F /* EmojiViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +22,16 @@
 		D34A23A31DD92F480055401F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D34A23A51DD92F480055401F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D34A23A61DD92F480055401F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D34A23A81DD92F480055401F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D34A23A91DD92F480055401F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D34A23AC1DD92F480055401F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D34A23AE1DD92F480055401F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D34A23B11DD92F480055401F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34A23B31DD92F480055401F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D34A23BC1DD934770055401F /* EmojiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiTableViewController.h; sourceTree = "<group>"; };
+		D34A23BD1DD934770055401F /* EmojiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiTableViewController.m; sourceTree = "<group>"; };
+		D34A23BF1DD93FF10055401F /* EmojiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiTableViewCell.h; sourceTree = "<group>"; };
+		D34A23C01DD93FF10055401F /* EmojiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiTableViewCell.m; sourceTree = "<group>"; };
+		D34A23C21DD9698B0055401F /* EmojiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiViewController.h; sourceTree = "<group>"; };
+		D34A23C31DD9698B0055401F /* EmojiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +66,12 @@
 			children = (
 				D34A23A51DD92F480055401F /* AppDelegate.h */,
 				D34A23A61DD92F480055401F /* AppDelegate.m */,
-				D34A23A81DD92F480055401F /* ViewController.h */,
-				D34A23A91DD92F480055401F /* ViewController.m */,
+				D34A23BC1DD934770055401F /* EmojiTableViewController.h */,
+				D34A23BD1DD934770055401F /* EmojiTableViewController.m */,
+				D34A23BF1DD93FF10055401F /* EmojiTableViewCell.h */,
+				D34A23C01DD93FF10055401F /* EmojiTableViewCell.m */,
+				D34A23C21DD9698B0055401F /* EmojiViewController.h */,
+				D34A23C31DD9698B0055401F /* EmojiViewController.m */,
 				D34A23AB1DD92F480055401F /* Main.storyboard */,
 				D34A23AE1DD92F480055401F /* Assets.xcassets */,
 				D34A23B01DD92F480055401F /* LaunchScreen.storyboard */,
@@ -149,9 +159,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D34A23AA1DD92F480055401F /* ViewController.m in Sources */,
+				D34A23BE1DD934770055401F /* EmojiTableViewController.m in Sources */,
 				D34A23A71DD92F480055401F /* AppDelegate.m in Sources */,
+				D34A23C41DD9698B0055401F /* EmojiViewController.m in Sources */,
 				D34A23A41DD92F480055401F /* main.m in Sources */,
+				D34A23C11DD93FF10055401F /* EmojiTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +310,7 @@
 				D34A23B81DD92F480055401F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

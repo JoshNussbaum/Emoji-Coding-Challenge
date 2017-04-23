@@ -1,25 +1,198 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IJ2-MV-oVn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Root View Controller-->
+        <scene sceneID="Ole-dq-pNk">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController id="1bI-Lc-pJJ" customClass="EmojiTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jcb-0l-Nsy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmojiTableViewCell" id="sbO-AX-gIo" customClass="EmojiTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sbO-AX-gIo" id="7x4-8d-tpY">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P3I-Uf-j04">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="P3I-Uf-j04" secondAttribute="height" multiplier="50:43" id="kUv-MO-DSJ"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="kUv-MO-DSJ"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="kUv-MO-DSJ"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="P3I-Uf-j04" firstAttribute="centerY" secondItem="7x4-8d-tpY" secondAttribute="centerY" id="fIp-6R-m0V"/>
+                                        <constraint firstItem="P3I-Uf-j04" firstAttribute="centerX" secondItem="7x4-8d-tpY" secondAttribute="centerX" id="hPy-Bp-4RO"/>
+                                        <constraint firstItem="P3I-Uf-j04" firstAttribute="width" secondItem="7x4-8d-tpY" secondAttribute="height" multiplier="50:43" id="uC0-7L-mFu"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="P3I-Uf-j04"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="fIp-6R-m0V"/>
+                                            <exclude reference="hPy-Bp-4RO"/>
+                                            <exclude reference="uC0-7L-mFu"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="P3I-Uf-j04"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="fIp-6R-m0V"/>
+                                            <include reference="hPy-Bp-4RO"/>
+                                            <include reference="uC0-7L-mFu"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="emojiImageView" destination="P3I-Uf-j04" id="FSG-sp-lIw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1bI-Lc-pJJ" id="Bph-rh-Ix8"/>
+                            <outlet property="delegate" destination="1bI-Lc-pJJ" id="UZN-7f-Zwr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="bpo-rl-u45"/>
+                    <connections>
+                        <segue destination="lxf-WE-Vgh" kind="show" identifier="show_emoji_segue" id="Ijf-BV-Pxe"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R33-Vd-sgz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="42" y="-6"/>
+        </scene>
+        <!--Emoji View Controller-->
+        <scene sceneID="sdD-YZ-Evk">
+            <objects>
+                <viewController id="lxf-WE-Vgh" customClass="EmojiViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7hi-KA-gUn"/>
+                        <viewControllerLayoutGuide type="bottom" id="oYC-vV-XFS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wTe-Mc-fgr">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nr5-L3-HGz">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nr5-L3-HGz" secondAttribute="height" multiplier="1:1" id="buJ-SQ-PpG"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="buJ-SQ-PpG"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="buJ-SQ-PpG"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DK4-mF-mGZ">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DK4-mF-mGZ" secondAttribute="height" multiplier="67:7" id="tAw-rg-0sd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tAw-rg-0sd"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="tAw-rg-0sd"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DK4-mF-mGZ" firstAttribute="centerX" secondItem="wTe-Mc-fgr" secondAttribute="centerX" id="0u7-O6-YwW"/>
+                            <constraint firstItem="nr5-L3-HGz" firstAttribute="centerY" secondItem="wTe-Mc-fgr" secondAttribute="centerY" id="P70-ie-kKg"/>
+                            <constraint firstItem="DK4-mF-mGZ" firstAttribute="width" secondItem="wTe-Mc-fgr" secondAttribute="height" multiplier="67:150" id="eQx-tw-On2"/>
+                            <constraint firstItem="nr5-L3-HGz" firstAttribute="centerX" secondItem="wTe-Mc-fgr" secondAttribute="centerX" id="pxE-N0-v5X"/>
+                            <constraint firstItem="nr5-L3-HGz" firstAttribute="width" secondItem="wTe-Mc-fgr" secondAttribute="height" multiplier="1:3" id="q7v-sO-6y2"/>
+                            <constraint firstItem="DK4-mF-mGZ" firstAttribute="top" secondItem="7hi-KA-gUn" secondAttribute="bottom" constant="62" id="zIW-z3-Tyx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="nr5-L3-HGz"/>
+                                <exclude reference="DK4-mF-mGZ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="0u7-O6-YwW"/>
+                                <exclude reference="eQx-tw-On2"/>
+                                <exclude reference="zIW-z3-Tyx"/>
+                                <exclude reference="P70-ie-kKg"/>
+                                <exclude reference="pxE-N0-v5X"/>
+                                <exclude reference="q7v-sO-6y2"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="nr5-L3-HGz"/>
+                                <include reference="DK4-mF-mGZ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="0u7-O6-YwW"/>
+                                <include reference="eQx-tw-On2"/>
+                                <include reference="zIW-z3-Tyx"/>
+                                <include reference="P70-ie-kKg"/>
+                                <include reference="pxE-N0-v5X"/>
+                                <include reference="q7v-sO-6y2"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="emojiImage" destination="nr5-L3-HGz" id="Lmt-hI-uPM"/>
+                        <outlet property="emojiLabel" destination="DK4-mF-mGZ" id="RGl-Bp-LOn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PRT-m7-ZtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="-6"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YWX-2j-upa">
+            <objects>
+                <navigationController id="IJ2-MV-oVn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c58-jV-Snj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1bI-Lc-pJJ" kind="relationship" relationship="rootViewController" id="ETD-lM-q9H"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bRz-mj-EAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-888" y="-6"/>
         </scene>
     </scenes>
 </document>

@@ -8,7 +8,10 @@
 
 #import "EmojiViewController.h"
 
-@interface EmojiViewController ()
+@interface EmojiViewController (){
+    NSString *labelString;
+    NSData *imageData;
+}
 
 @end
 
@@ -16,22 +19,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.emojiLabel.text = labelString;
+    self.emojiImage.image = [UIImage imageWithData:imageData];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)setEmojiWithLabelString:(NSString *)labelString_ imageData:(NSData *)imageData_{
+    labelString = labelString_;
+    imageData = imageData_;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

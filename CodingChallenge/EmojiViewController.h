@@ -10,4 +10,9 @@
 
 @interface EmojiViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UILabel *emojiLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *emojiImage;
+
+-(void)setEmojiWithLabelString:(NSString *)labelString_ imageData:(NSData *)imageData_;
+
 @end
