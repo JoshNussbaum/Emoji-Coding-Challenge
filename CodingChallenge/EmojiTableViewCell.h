@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  EmojiTableViewCell.h
 //  CodingChallenge
 //
 //  Created by Josh Nussbaum on 11/13/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface EmojiTableViewCell : UITableViewCell
 
 @end
-
